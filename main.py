@@ -84,4 +84,5 @@ def Total_item_weight(table,CR):
     return table.sum(axis=1)
 
 
-print(Total_item_weight(table,obtain_criteria_weight(M)))
+print(max(Total_item_weight(table,obtain_criteria_weight(M))))
+print(table)
