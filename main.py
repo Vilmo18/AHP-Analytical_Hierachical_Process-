@@ -6,6 +6,7 @@ M[0][0]=1
 M[1][0]=5
 M=np.array([[1,5,4,7],[1/5,1,2,3],[1/4,1/2,1,3],[1/7,1/3,1/3,1]])
 S=M.sum(axis=0)
+
 N=np.array([[1,5,4,7],[1/5,1,2,3],[1/4,1/2,1,3],[1/7,1/3,1/3,1]])
 
 
@@ -33,7 +34,7 @@ def calculate_criteria_sum(M,B):
             B[j][i]=B[j][i]*S[i]
     return np.array([B.sum(axis=1),S])
 
-C 
+ 
 #print(calculate_criteria_sum(M,N))
 
 def calculate_lambda_max(Matrix):
@@ -58,8 +59,26 @@ def check_consistency(Matrix):
     else:
         print("Not good")
 
-
-R=calculate_criteria_sum(M,N)
+"""R=calculate_criteria_sum(M,N)
 print(calculate_lambda_max(R))
 print(calculate_CR(R))
-check_consistency(R)
+check_consistency(R)"""
+crime=2
+
+def obtain_criteria_weight(Matrix):
+    M=normalize_pair(Matrix)
+    return calculte_criteria_weight(M)
+
+A=np.array((crime,4))
+
+table=np.array([[350000,1000,2.1,16]])
+print(obtain_criteria_weight(M))
+
+def Total_item_weight(table,CR):
+    for i in range(table.shape[0]):
+        for j in range(table.shape[1]):
+            table[j][i]=table[j][i]*CR[i]
+    return table.sum(axis=1)
+
+
+print(Total_item_weight(table,obtain_criteria_weight(M)))
