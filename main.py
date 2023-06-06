@@ -71,12 +71,15 @@ def obtain_criteria_weight(Matrix):
 
 A=np.array((crime,4))
 
-table=np.array([[350000,1000,2.1,16]])
+table=np.array([[350000,1000,2.1,16],[275000,500,3.2,16],])
+
+
 print(obtain_criteria_weight(M))
 
 def Total_item_weight(table,CR):
-    for i in range(table.shape[0]):
-        for j in range(table.shape[1]):
+    for i in range(table.shape[1]):
+        for j in range(table.shape[1*0]):
+
             table[j][i]=table[j][i]*CR[i]
     return table.sum(axis=1)
 
