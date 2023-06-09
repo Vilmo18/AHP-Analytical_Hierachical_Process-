@@ -1,9 +1,9 @@
 import numpy as np
 
-n= int(input('Entrer le nombre de critère '))
+"""n= int(input('Entrer le nombre de critère '))
 M=np.zeros((n,n))
 M[0][0]=1
-M[1][0]=5
+M[1][0]=5"""
 M=np.array([[1,5,4,7],[1/5,1,2,3],[1/4,1/2,1,3],[1/7,1/3,1/3,1]])
 S=M.sum(axis=0)
 
@@ -79,10 +79,42 @@ print(obtain_criteria_weight(M))
 def Total_item_weight(table,CR):
     for i in range(table.shape[1]):
         for j in range(table.shape[1*0]):
-
             table[j][i]=table[j][i]*CR[i]
     return table.sum(axis=1)
 
 
-print(max(Total_item_weight(table,obtain_criteria_weight(M))))
-print(table)
+# importation de la bibliothèque
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/AHP')
+def test():
+    print('Entrer les incidents')
+    nb_crime=int(input())
+    table=np.zeros((nb_crime,4))
+    name=[]
+    for i in range (nb_crime):
+            print("Entrer les informations pour le crime ",1)
+            N=input('Entrer le noome du crime')
+            name.append(N)
+            table[i][0]=int(input("Enter the ranking of crime"))
+            table[i][1]=int(input("Enter the distance"))
+            table[i][2]=int(input("Enter number of victims"))
+            table[i][3]=int(input("Enter le taux de criminalité de la zone"))
+
+    #table=np.array([[350000,1000,2.1,16],[275000,500,3.2,16],])
+    val=Total_item_weight(table,obtain_criteria_weight(M))
+    maxi=val[0]
+    ind=0
+    for i in range(1,len(val)):    
+        if maxi<val[i]:
+            maxi=val[i]
+            ind=i
+    print(val)
+    print(max(val))
+    print(maxi,ind+1)
+    return {"nom du crime":name[ind],'numero':ind+1}
+
+if __name__ == '__main__':
+    app.run(debug=True, port=6000)
+    print("lancement")
