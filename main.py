@@ -34,7 +34,6 @@ def calculate_criteria_sum(M,B):
             B[j][i]=B[j][i]*S[i]
     return np.array([B.sum(axis=1),S])
 
- 
 #print(calculate_criteria_sum(M,N))
 
 def calculate_lambda_max(Matrix):
@@ -69,10 +68,9 @@ def obtain_criteria_weight(Matrix):
     M=normalize_pair(Matrix)
     return calculte_criteria_weight(M)
 
-A=np.array((crime,4))
-
+"""A=np.array((crime,4))
 table=np.array([[350000,1000,2.1,16],[275000,500,3.2,16],])
-
+"""
 
 print(obtain_criteria_weight(M))
 
@@ -95,12 +93,12 @@ def test():
     name=[]
     for i in range (nb_crime):
             print("Entrer les informations pour le crime ",1)
-            N=input('Entrer le noome du crime')
+            N=input('Entrer le nome du crime ')
             name.append(N)
-            table[i][0]=int(input("Enter the ranking of crime"))
-            table[i][1]=int(input("Enter the distance"))
-            table[i][2]=int(input("Enter number of victims"))
-            table[i][3]=int(input("Enter le taux de criminalité de la zone"))
+            table[i][0]=int(input("Enter the ranking of crime",i))
+            table[i][1]=int(input("Enter the distance",i))
+            table[i][2]=int(input("Enter number of victims",i))
+            table[i][3]=int(input("Enter le taux de criminalité de la zone",i))
 
     #table=np.array([[350000,1000,2.1,16],[275000,500,3.2,16],])
     val=Total_item_weight(table,obtain_criteria_weight(M))
